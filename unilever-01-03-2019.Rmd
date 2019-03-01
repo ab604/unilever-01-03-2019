@@ -22,7 +22,7 @@ library(UpSetR)
 library(ggseqlogo)
 
 # Load HaCaT data
-dat <- readRDS("data/dat.RDS")
+dat <- readRDS("data/wt-dat.RDS")
 
 dat_sub <- dat %>% select(peptide,length,exp_name,accession) %>%
   filter(length >= 8 & length <= 15, str_detect(accession,"HUMAN")) %>%
@@ -30,28 +30,28 @@ dat_sub <- dat %>% select(peptide,length,exp_name,accession) %>%
                                          "Control","DNCB"),
          peptide = str_replace_all(peptide,"\\(.*?\\)", ""))
 
-# Transfectant data
-# a2_dat <- read_rds("data/a2_dat.RDS") %>% 
-#   select(peptide,length,exp_name,accession) %>% 
-#   filter(length >= 8 & length <= 15, str_detect(accession,"HUMAN")) %>% 
-#   mutate(exp_type = if_else(str_detect(exp_name,"^C"), 
-#                                          "Control","DNCB"),
-#          peptide = str_replace_all(peptide,"\\(.*?\\)", ""))
-# 
+#Transfectant data
+a2_dat <- read_rds("data/a2_dat.RDS") %>%
+  select(peptide,length,exp_name,accession) %>%
+  filter(length >= 8 & length <= 15, str_detect(accession,"HUMAN")) %>%
+  mutate(exp_type = if_else(str_detect(exp_name,"^C"),
+                                         "Control","DNCB"),
+         peptide = str_replace_all(peptide,"\\(.*?\\)", ""))
+
 a2_dncb_mods <- read_rds("data/a2_dncb_mods.RDS")
 
 wt_logos <- read_rds("data/hacat-wt-pred-logos-dat.rds")
 iedb_wt_logos <- read_rds("data/ideb-wt-logos-dat.rds")
 ideb_a2_logos <- read_rds("data/iedb-logos-A2.rds")
 a2_logos <- read_rds("data/hacat-A2-pred-logos.rds")
-# bind_plot <- read_rds("data/hacat_wt_pred_binders_plot.RDS")
-# a2_bind_plot <- read_rds("data/hacat_pred_binders_plot.RDS")
+bind_plot <- read_rds("data/hacat_wt_pred_binders_plot.RDS")
+a2_bind_plot <- read_rds("data/hacat_pred_binders_plot.RDS")
 
 glut_sub <- read_rds("data/glut_sub.RDS")
 ker_sub <- read_rds("data/ker_sub.RDS")
 
-# rini_df <- read_rds("data/rini_df.RDS")
-# ker_df <- read_rds("data/ker_df.RDS")
+rini_df <- read_rds("data/rini_df.RDS")
+ker_df <- read_rds("data/ker_df.RDS")
 
 cell_viability <- read_rds("data/cell-viability-output-20-12-2018.rds")
 # Marine-1, Horizon-1, Horizon-3, Marine-2, Horizon-2
@@ -66,6 +66,104 @@ htmltools::includeHTML("data/immunosense-summary-table-01-03-2019.html")
 
 ---
 
+class: split-two 
+
+.column.inverse[.content.center.vmiddle[
+
+# Hypothesis
+
+.horizon-1.bold[DNCB] (2,4-Dinitrochlorobenzene) and .horizon-1.bold[DPCP] (Diphenylcyclopropenone)
+modified peptides stimulate CD8<sup>+</sup> T-cells
+
+]]
+
+.column.horizon-1-slide[.content.middle.center[
+
+```{r,out.width="85%",echo=FALSE, cache=TRUE}
+knitr::include_graphics("img/mhc-dncb-peptide.png")
+```
+]]
+
+---
+
+class: split-two 
+
+.column.inverse[.content.center.vmiddle[
+
+# Hypothesis
+
+.horizon-1.bold[DNCB] (2,4-Dinitrochlorobenzene) and .horizon-1.bold[DPCP] (Diphenylcyclopropenone)
+modulate the peptidome
+
+]]
+
+.column.horizon-1-slide[.content.vmiddle.center[
+![](img/newtons-cradle.gif)
+
+]]
+
+---
+
+layout: false
+class: split-33 
+
+.column.inverse[.content.center.vmiddle[
+
+## HaCaTs express MHC class I, but not MHC class II
+
+]]
+
+.column.horizon-1-slide[.content.center.vmiddle[
+
+# FACs data
+
+]]
+
+---
+
+layout: false
+class: split-33 
+
+.column.inverse[.content.center.vmiddle[
+
+# At what concentration are DNCB and DPCP toxic?
+
+]]
+
+.column.horizon-1-slide[.content.center.vmiddle[
+
+```{r cell-viability,echo=FALSE,fig.retina=6,fig.asp=0.8,out.width="90%",cache=F,warning=FALSE}
+cell_viability %>% 
+  ggplot(aes(conc,max, colour = assay)) + 
+  geom_point() +
+  geom_line() +
+  geom_errorbar(aes(ymin=max-se, ymax=max+se), width=.1) +
+  scale_x_log10() +
+  annotate("segment", x = 5, xend = 5, y = 0, yend = 220,
+  colour = "black",linetype = 3) +
+  annotate("text", x = 2.8, y = 32, label = expression(5~mu*M)) +
+  xlab(label = expression(Concentration~mu*M)) +
+  ylab("Percent") +
+  ylim(-10,220) +
+  scale_colour_manual(values = my_cols[c(1,3)]) +
+  theme_minimal(base_size = 14) +
+  theme(panel.spacing = unit(2, "lines")) +
+   facet_wrap(treatment ~ cell)
+```
+
+]]
+
+---
+
+
+class: inverse
+background-image: url(img/hacat-a2-04-01-2019.jpg)
+background-size: 100%
+
+# .content.black.bold[Wildtype HaCaT cells]
+
+---
+
 layout: false
 class: split-two 
 
@@ -73,7 +171,7 @@ class: split-two
 
 Number of peptide N-mers, n = 6
 
-```{r, fig.retina=4,echo=FALSE, cache=TRUE}
+```{r wt-histograms-1, fig.retina=4,echo=FALSE, cache=T}
 dat_sub %>% 
   select(length, exp_type, exp_name) %>% 
   group_by(length, exp_name) %>% 
@@ -102,7 +200,7 @@ dat_sub %>%
 
 Percentage of peptide N-mers, n = 6
 
-```{r, fig.retina=4,echo=FALSE, cache=TRUE}
+```{r wt-histograms-2, fig.retina=4, echo=FALSE, cache=T}
 dat_sub %>% 
   select(length, exp_type, exp_name) %>% 
   group_by(exp_name, length) %>% 
@@ -130,6 +228,74 @@ dat_sub %>%
 ```
 
 ]]
+
 ---
 
+class: split-two 
+
+.column.inverse[.content.center.vmiddle[
+
+Intersection between all peptides
+
+```{r, upset-plot,fig.retina=4, fig.asp=0.8,out.width="100%", echo=FALSE, cache=TRUE}
+
+du <- dat_sub %>% 
+  select(peptide, exp_type) %>% 
+  group_by(exp_type,peptide) %>% 
+  distinct() %>% 
+  tally() %>% 
+  mutate(n = as.integer(n)) %>% 
+  spread(exp_type,n, fill = 0) %>%
+  mutate(peptide = as.factor(peptide))
+
+upset(as.data.frame(du), nsets = 2,  
+      number.angles = 0, point.size = 5, 
+      line.size = 2,order.by = "freq", 
+      main.bar.color = my_cols[1], 
+      matrix.color = my_cols[2], 
+      sets.bar.color = my_cols[c(1,3)],
+      mainbar.y.label = "Peptide Intersections", sets.x.label = "Number of Peptides",
+      #c(intersection size title, intersection size tick labels, set size title, set size tick labels, set names, numbers above bars)
+      text.scale = c(1.6, 1.6, 1.6, 1, 1.6, 2))
+```
+
+]]
+
+.column.horizon-1-slide[.content.center.vmiddle[
+
+Intersection of 9-mers
+
+```{r, upset-2,upset-plot,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=TRUE}
+du2 <- dat_sub %>% 
+  filter(length == 9) %>% 
+  select(peptide, exp_type) %>% 
+  group_by(exp_type,peptide) %>% 
+  distinct() %>% 
+  tally() %>% 
+  mutate(n = as.integer(n)) %>% 
+  spread(exp_type,n, fill = 0) %>%
+  mutate(peptide = as.factor(peptide))
+
+upset(as.data.frame(du2), nsets = 2,  
+      number.angles = 0, point.size = 5, 
+      line.size = 2,order.by = "freq", 
+      matrix.color = my_cols[2], 
+      main.bar.color = my_cols[1], 
+      sets.bar.color = my_cols[c(1,3)],
+      mainbar.y.label = "Peptide Intersections", sets.x.label = "Number of Peptides", 
+      #c(intersection size title, intersection size tick labels, set size title, set size tick labels, set names, numbers above bars)
+      text.scale = c(1.6, 1.6, 1.6, 1, 1.6, 2))
+```
+
+]]
+
+---
+
+class: inverse
+background-image: url(img/hacat-a2-04-01-2019.jpg)
+background-size: 100%
+
+# .content.black.bold[HaCaT HLA-A*02:01 <br> transfectant cells]
+
+---
 
