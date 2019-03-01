@@ -1,0 +1,206 @@
+/************************************
+
+University of Southampton Template
+Alistair Bailey
+17th December 2018
+
+Split-Complement Colours for slide 
+colours are:
+
+Marine 1, Horizon 1 and Horizon 2
+
+*************************************/
+
+/* Marine Colours are defined by the          */
+/* UoS Marine Branding Color Palette */
+/* https://www.southampton.ac.uk/brand/category/colour/ */
+.marine-1 {color: #005C84;}
+.marine-2 {color: #74C9E5;}
+.marine-3 {color: #3CBAC6;}
+.marine-4 {color: #B3DBD2;}
+.marine-5 {color: #4BB694;}
+.marine-6 {color: #C1D100;}
+
+/* Horizon Colours are defined by the          */
+/* UoS Horizon Branding Color Palette */
+/* https://www.southampton.ac.uk/brand/category/colour/ */
+.horizon-1 { color: #FCBC00; }
+.horizon-2 { color: #EF7D00; }
+.horizon-3 { color: #E73037; }
+.horizon-4 {color: #D5007F;}
+.horizon-5 { color: #8D3970;}
+
+.neutral {color: #495961;}
+
+/*content boxes */
+.content-box-white,
+.content-box-neutral,
+.content-box-marine,
+.content-box-horizon {
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+    width: 100%;
+}
+
+.full-width {
+    display: flex;
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.content-box-white {
+    /* set opacity in last decimal value of rgba */
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,.85);
+
+}
+
+.content-box-neutral {
+    /* set opacity in last decimal value of rgba */
+    background-color: rgb(73,89,97);
+    background-color: rgba(73,89,97,.85);
+}
+
+/* marine 5 */
+.content-box-marine {
+    /* set opacity in last decimal value of rgba */
+    background-color: rgb(00,85,127);
+    background-color: rgba(00,85,127,.85);
+}
+
+/* horizon 3 */
+.content-box-horizon {
+    /* set opacity in last decimal value of rgba */
+    background-color: rgb(231,48,55);
+    background-color: rgba(231,48,55,.85);
+}
+
+/* University of Southampton Logo amd marine 1 background-color */
+.title-slide {
+	background-color: #005C84;
+  background-image: url(https://raw.githubusercontent.com/ab604/ab604.github.io/master/docs/uos-logo-white.png);
+	background-position: left 20px top 20px;
+	background-size: 23%;
+}
+
+.title-slide h1, .title-slide h2, .title-slide h3 {
+  color: white;
+}
+
+/* Set inverse background-color to marine 1 */
+.inverse {
+  background-color: #005C84;
+  color: white;
+  
+}
+
+/* marine 2 background-color, marine 1 font colour */
+.marine-slide-2 {
+  background-color: #74C9E5;
+  color: #005C84;
+}
+
+.marine-slide-2 h1, .marine-slide-2 h2, .marine-slide-2 h3 {
+  color: #005C84;
+}
+
+/* marine 3 background-color, marine 1 font colour */
+.marine-slide-3 {
+  background-color: #3CBAC6;
+  color: #005C84;
+}
+
+.marine-slide-3 h1, .marine-slide-3 h2, .marine-slide-3 h3 {
+  color: #005C84;
+}
+
+/* marine 4 background-color, marine 1 font colour */
+.marine-slide-4 {
+  background-color: #B3DBD2;
+  color: #005C84;
+}
+
+.marine-slide-4 h1, .marine-slide-4 h2, .marine-slide-4 h3 {
+  color: #005C84;
+}
+
+/* marine 5 background-color, marine 1 font colour */
+.marine-slide-5 {
+  background-color: #4BB694;
+  color: #005C84;
+}
+
+.marine-slide-5 h1, .marine-slide-5 h2, .marine-slide-5 h3 {
+  color: #005C84;
+}
+
+/* marine 6 background-color, marine 1 font colour */
+.marine-slide-6 {
+  background-color: #C1D100;
+  color: #005C84;
+}
+
+.marine-slide-6 h1, .marine-slide-6 h2, .marine-slide-6 h3 {
+  color: #005C84;
+}
+
+/* horizon 1 background-color, marine 1 font colour */
+.horizon-1-slide {
+  background-color:#FCBC00;
+  color: #005C84;
+}
+
+.horizon-1-slide h1, .horizon-1-slide h2, .horizon-1-slide h3 {
+  color: #005C84;
+}
+
+/* horizon 2 background-color, marine 1 font colour */
+.horizon-2-slide {
+  background-color:#EF7D00;
+  color: #005C84;
+}
+
+.horizon-2-slide h1, .horizon-2-slide h2, .horizon-2-slide h3 {
+  color: #005C84;
+}
+
+/* horizon 3 background-color, marine 1 font colour */
+.horizon-3-slide {
+  background-color: #E73037;
+  color: #E1E8EC;
+}
+
+.horizon-3-slide h1, .horizon-3-slide h2, .horizon-3-slide h3 {
+  color: #005C84;
+}
+
+/* horizon 4 background-color, white font colour */
+.horizon-4-slide {
+  background-color: #D5007F;
+  color: white;
+}
+
+.horizon-4-slide h1, .horizon-4-slide h2, .horizon-4-slide h3 {
+  color: white;
+}
+
+/* horizon 5 background-color, white font colour */
+.horizon-5-slide {
+  background-color: #8D3970;
+  color: white;
+}
+
+.horizon-5-slide h1, .horizon-5-slide h2, .horizon-5-slide h3 {
+  color: white;
+}
+
+/*  footer */
+.footer-note {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    width: 500px;
+    height: 25px;
+}
+

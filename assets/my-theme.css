@@ -1,0 +1,209 @@
+/*Custom css for rmarkdown xaringa. 
+A.Bailey 28th November 2018 */
+/* Let's load some fonts */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+/* Generic stuff 
+
+.remark-code { font-family: 'Ubuntu Mono'; font-size: 55}
+.remark-inline-code { font-family: 'Ubuntu Mono'; font-size: 30}*/
+
+body { font-family: 'Open Sans'; }
+
+.grViz {
+  margin-left:auto; margin-right:auto; display:block;
+}
+
+/* Pretty sure this is all me messing with the title slide */
+
+.inverse h1 {
+    line-height: 0.5em;
+}
+
+
+div.remark-slide-container h2 {
+	font-family: 'Open Sans', sans-serif;
+	color: #E1E8EC;
+	letter-spacing: -1px;
+	font-size: 20px
+}
+
+div.remark-slide-container h3 {
+	font-family: 'Open Sans', sans-serif;
+	color: #E1E8EC;
+	letter-spacing: -1px;
+	font-size: 18px;
+	padding-top: 50px
+}
+
+.title-slide {
+	font-family: 'Open Sans', sans-serif;
+	background-color: #005C84;
+   background-image: url(UoS_Logo.svg);
+	background-position: left 20px top 20px;
+	background-size: 300px 75px;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+.title-slide > h1  {
+  font-size: 80px;
+  text-shadow: none;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -3px;
+}
+
+/* Control author size */
+.title-slide > h3:nth-of-type(1) {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+/* Control data size */
+.title-slide > h3:nth-of-type(2) {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* Hmm. How about the slide number. */
+.remark-slide-number {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: #522D80;
+}
+
+/* Let's play with .inverse and a new class, .fullscale, a little more */
+
+.inverse {
+    color: #fafafa;
+    text-shadow: 0 0 0px #333;
+}
+
+div.remark-slide-container .fullscale {
+    color: #d6d6d6;
+    text-shadow: 0 0 20px #333;
+}
+
+div.remark-slide-container .fullscale {
+	color: #fff;
+
+}
+
+div.remark-slide-container .fullscale p {
+	color: #000;
+
+}
+
+/* Set font size for slides here */
+.remark-slide-content {
+	font-size: 30px;
+	text-shadow: 0 0 0px #333;
+
+}
+
+.remark-code, .remark-inline-code {
+  font-family: 'Ubuntu Mono';
+  font-size: 100%;
+}
+
+
+
+
+/* Font sizes */
+.huge { font-size: 200%;}
+.large { font-size: 130% }
+.small { font-size: 70% }
+.tiny { font-size: 40%;}
+.footnotesize { font-size: 80% }
+.scriptsize { font-size: 70% }
+
+
+/* Colors are defined by the          */
+/* UoS Horizon Branding Color Palette */
+/* https://www.southampton.ac.uk/brand/category/colour/ */
+.red { color: #E73037; }
+.yellow { color: #FCBC00; }
+.orange { color: #F09905; }
+.purple { color: #8D3970; }
+.magenta {color: #D5007F;}
+
+/* Colors are defined by the          */
+/* UoS Marine Branding Color Palette */
+/* https://www.southampton.ac.uk/brand/category/colour/ */
+.marine-1 {color: #005C84;}
+.marine-2 {color: #74C9E5;}
+.marine-3 {color: #3CBAC6;}
+.marine-4 {color: #B3DBD2;}
+.marine-5 {color: #4BB694;}
+.marine-6 {color: #C1D100;}
+
+.bold { font-weight: bold; }
+.bolder { font-weight: bolder; }
+
+/*  footer */
+.footer-note {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    width: 500px;
+    height: 25px;
+}
+
+.content-box-white,
+.content-box-gray,
+.content-box-grey,
+.content-box-neutral,
+.content-box-duke-green,
+.content-box-green,
+.content-box-purple,
+.content-box-red,
+.content-box-yellow {
+    border-radius: 15px;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+    width: 100%;
+}
+
+.content-box-white {
+    /* set opacity in last decimal value of rgba */
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,.85);
+
+}
+
+.uos-logo {
+  background-image: url(UoS_Logo.svg);
+	left: 20px; 
+	top: 20px;
+	size: 300px 75px;
+}
+
+.marine-slide {
+  background-color: #005C84;
+  color: white;
+}
+
+.horizon-1 {
+  background-color:#FCBC00;
+}
+
+.horizon-1 h1, .horizon-1 h2, .horizon-1 h3 {
+  color: #001A57;
+  line-height: 0.8em;
+}
+
+.uos-title {
+  background-color: #005C84;
+  color: white;
+  background-image: url(UoS_Logo.svg);
+	background-position: left 20px top 20px;
+	background-size: 300px 75px;
+}
+
+.horiz-1 {color: #FCBC00;}

@@ -1,0 +1,46 @@
+/************************************
+
+University of Southampton Fonts
+Alistair Bailey
+17th December 2018
+
+*************************************/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,400italic);
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color:  #005C84;
+}
+
+.remark-slide-content {
+  font-size: 1.5em;
+  padding: .25em 3.5em .25em 4em;
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color:  #005C84;
+}
+
+.remark-code, .remark-inline-code { 
+  font-family: 'Roboto Mono', monospace; 
+  color: #8D3970;
+}
+
+/* Font sizes and weights */
+.huge { font-size: 200%;}
+.larger { font-size: 150% }
+.large { font-size: 130% }
+.small { font-size: 75% }
+.tiny { font-size: 40%;}
+.footnotesize { font-size: 80% }
+.scriptsize { font-size: 70% }
+.light {font-family: 'Open Sans',sans-serif; font-weight: 300;}
+.bold { font-weight: bold; }
+.bolder { font-weight: bolder; }
+

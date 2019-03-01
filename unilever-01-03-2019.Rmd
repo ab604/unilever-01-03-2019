@@ -1,0 +1,32 @@
+---
+title: "ImmunoSense"
+author: "Alistair Bailey"
+date: "6th March 2019"
+output:
+  xaringan::moon_reader:
+    #seal: false
+    css: ["default", "uos-fonts.css","ninjutsu","uos.css","assets/ninpo.css"]
+    chakra: libs/remark-latest.min.js
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+```
+
+class: center,middle
+
+```{r summary-table,echo=FALSE}
+htmltools::includeHTML("data/immunosense-summary-table-01-03-2019.html")
+```
+
+---
+
+class: inverse
+
