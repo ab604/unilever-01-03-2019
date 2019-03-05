@@ -1,5 +1,6 @@
 base
-gt
+RevoUtilsMath
+RevoUtils
 tidyverse
 ggplot2
 tibble
@@ -11,3 +12,4 @@ stringr
 forcats
 UpSetR
 ggseqlogo
+bindrcpp

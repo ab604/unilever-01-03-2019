@@ -84,8 +84,21 @@ Marine 1, Horizon 1 and Horizon 2
 	background-size: 23%;
 }
 
+/* Turn off slide numbers */
 .title-slide h1, .title-slide h2, .title-slide h3 {
   color: white;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+.split-33 .remark-slide-number {
+  display: none;
+}
+
+.split-two .remark-slide-number {
+  display: none;
 }
 
 /* Set inverse background-color to marine 1 */

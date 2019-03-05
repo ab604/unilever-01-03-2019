@@ -56,6 +56,10 @@ ker_df <- read_rds("data/ker_df.RDS")
 cell_viability <- read_rds("data/cell-viability-output-20-12-2018.rds")
 # Marine-1, Horizon-1, Horizon-3, Marine-2, Horizon-2
 my_cols <- c("#005C84","#FCBC00","#E73037","#74C9E5","#EF7D00")
+
+facs_dat <- read_rds("data/hacat-facs-05-03-2019.rds")
+proto_example <- read_rds("data/prot-turnover-example.rds")
+proto_gst <- read_rds("data/prot-turnover-gst.rds")
 ```
 
 class: center,middle
@@ -106,7 +110,6 @@ modulate the peptidome
 
 layout: false
 class: split-33 
-
 .column.inverse[.content.center.vmiddle[
 
 ## HaCaTs express MHC class I, but not MHC class II
@@ -115,9 +118,21 @@ class: split-33
 
 .column.horizon-1-slide[.content.center.vmiddle[
 
-# FACs data
+```{r facs-data,echo=FALSE,fig.retina=6,fig.asp=0.8,out.width="90%",cache=F,warning=FALSE}
+# Plot facs data
+facs_dat %>% ggplot(aes(Condtion,sMFI_n, fill = fct_reorder2(Antibody,Condtion,sMFI_n))) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  facet_wrap(~ Cell) +
+  ylab("Specific Mean Fluorscence Intensity") +
+  labs(fill = "Antibody") +
+  scale_fill_manual(values = my_cols[c(1:3)]) +
+  theme_minimal(base_size = 14)
+```
+
 
 ]]
+
+.remark-slide-number {display: none;}
 
 ---
 
@@ -727,6 +742,35 @@ knitr::include_graphics("img/keratin_dnp_modified_peptide.png")
 ```
 
 ]]
+
+---
+
+class: inverse, middle, center
+
+# Protein turnover
+
+---
+
+class: inverse
+
+```{r example-turnover,fig.retina=4,fig.asp=0.6,out.width="100%", echo=FALSE, cache=TRUE}
+proto_example %>% 
+  ggplot(aes(time,ratio, colour = condition)) + 
+  geom_line(aes(group = condition)) +
+  geom_point(aes(group = condition)) +
+  #scale_x_continuous(trans = "log1p") +
+  facet_wrap(~treatment) +
+  theme_minimal(base_size = 15) +
+  #theme(legend.position = "") +
+  xlab("Time (hours)") +
+  ylab("Ratio") +
+  #scale_fill_brewer(palette="Set1") +
+  scale_color_manual(values = my_cols[c(1,3)]) +
+  ggtitle("Fatty aldehyde dehydrogenase") +
+  theme(legend.position="top", legend.title = element_blank())
+
+```
+
 
 ---
 
