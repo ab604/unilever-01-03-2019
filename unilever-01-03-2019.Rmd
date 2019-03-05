@@ -83,7 +83,7 @@ modified peptides stimulate CD8<sup>+</sup> T-cells
 
 .column.horizon-1-slide[.content.middle.center[
 
-```{r,out.width="85%",echo=FALSE, cache=TRUE}
+```{r,out.width="85%",echo=FALSE, cache=FALSE}
 knitr::include_graphics("img/mhc-dncb-peptide.png")
 ```
 ]]
@@ -118,7 +118,7 @@ class: split-33
 
 .column.horizon-1-slide[.content.center.vmiddle[
 
-```{r facs-data,echo=FALSE,fig.retina=6,fig.asp=0.8,out.width="90%",cache=F,warning=FALSE}
+```{r facs-data,echo=FALSE,fig.retina=6,fig.asp=0.8,out.width="90%",cache=FALSE,warning=FALSE}
 # Plot facs data
 facs_dat %>% ggplot(aes(Condtion,sMFI_n, fill = fct_reorder2(Antibody,Condtion,sMFI_n))) +
   geom_bar(stat = "identity", position = "dodge2") +
@@ -147,7 +147,7 @@ class: split-33
 
 .column.horizon-1-slide[.content.center.vmiddle[
 
-```{r cell-viability,echo=FALSE,fig.retina=6,fig.asp=0.8,out.width="90%",cache=F,warning=FALSE}
+```{r cell-viability,echo=FALSE,fig.retina=6,fig.asp=0.8,out.width="90%",cache=FALSE,warning=FALSE}
 cell_viability %>% 
   ggplot(aes(conc,max, colour = assay)) + 
   geom_point() +
@@ -186,7 +186,7 @@ class: split-two
 
 Number of peptide N-mers, n = 6
 
-```{r wt-histograms-1, fig.retina=4,echo=FALSE, cache=T}
+```{r wt-histograms-1, fig.retina=4,echo=FALSE, cache=FALSE}
 dat_sub %>% 
   select(length, exp_type, exp_name) %>% 
   group_by(length, exp_name) %>% 
@@ -215,7 +215,7 @@ dat_sub %>%
 
 Percentage of peptide N-mers, n = 6
 
-```{r wt-histograms-2, fig.retina=4, echo=FALSE, cache=T}
+```{r wt-histograms-2, fig.retina=4, echo=FALSE, cache=FALSE}
 dat_sub %>% 
   select(length, exp_type, exp_name) %>% 
   group_by(exp_name, length) %>% 
@@ -252,7 +252,7 @@ class: split-two
 
 Intersection between all peptides
 
-```{r, upset-plot,fig.retina=4, fig.asp=0.8,out.width="100%", echo=FALSE, cache=TRUE}
+```{r, upset-plot,fig.retina=4, fig.asp=0.8,out.width="100%", echo=FALSE, cache=FALSE}
 
 du <- dat_sub %>% 
   select(peptide, exp_type) %>% 
@@ -280,7 +280,7 @@ upset(as.data.frame(du), nsets = 2,
 
 Intersection of 9-mers
 
-```{r, upset-2,upset-plot,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=TRUE}
+```{r, upset-2,upset-plot,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=FALSE}
 du2 <- dat_sub %>% 
   filter(length == 9) %>% 
   select(peptide, exp_type) %>% 
@@ -312,7 +312,7 @@ class: split-two
 
 Immune epitope database peptides
 
-```{r, iedb-logos, fig.retina=4, echo=FALSE,fig.asp=0.8,out.width="100%",message=F, cache=TRUE}
+```{r, iedb-logos, fig.retina=4, echo=FALSE,fig.asp=0.8,out.width="100%",message=F, cache=FALSE}
 # IEDB logos
 ggseqlogo(iedb_wt_logos)
 ```
@@ -323,7 +323,7 @@ ggseqlogo(iedb_wt_logos)
 
 Peptide classification model
 
-```{r, wt_logos,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=TRUE}
+```{r, wt_logos,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=FALSE}
 ggseqlogo(wt_logos)
 ```
 
@@ -336,7 +336,7 @@ There were 1000 9-mer peptides for each allotype for the IEDB peptides
 ---
 class: inverse
 
-```{r, wt_preds,fig.retina=6,echo=FALSE,fig.asp=0.6,out.width="100%", cache=TRUE}
+```{r, wt_preds,fig.retina=6,echo=FALSE,fig.asp=0.6,out.width="100%", cache=FALSE}
 bind_plot + scale_fill_gradient(low = my_cols[5], high = my_cols[1]) +
   labs(title = "Identified NetMHC binding predicted 9-mer peptides ",
       subtitle = "Predicted binders in blue") 
@@ -358,7 +358,7 @@ HLA-A*31:01, 10mer, .horizon-1.bold[RFC(+DNP)PFAERTR], Glutathione S-transferase
 
 .column.horizon-1-slide[.content.center.vmiddle[
 
-```{r dncb-mods-table, out.width="100%",echo=FALSE, cache=TRUE}
+```{r dncb-mods-table, out.width="100%",echo=FALSE, cache=FALSE}
 # Find DNCB modifications
 DT::datatable(dat %>% 
                filter(str_detect(peptide,"\\+166"), length >= 8 & length <= 15) %>% 
@@ -382,7 +382,7 @@ class: split-two
 HLA-B*40:01, 9mer, .horizon-1.bold[AETEC(+DNP)RYAL] <br> Keratin type I cytoskeletal 13
 
 
-```{r kera-scan,warning=FALSE, echo=FALSE,fig.retina=4,fig.asp=0.7,out.width="100%", cache=TRUE}
+```{r kera-scan,warning=FALSE, echo=FALSE,fig.retina=4,fig.asp=0.7,out.width="100%", cache=FALSE}
 ker_sub %>% ggplot(aes(x = mz,y = intensity)) + 
   geom_bar(stat="identity", width = 0.001) +
   #geom_density(stat="identity") +
@@ -407,7 +407,7 @@ ker_sub %>% ggplot(aes(x = mz,y = intensity)) +
 
 HLA-A*31:01, 10mer, .white.bold[RFC(+DNP)PFAERTR] <br> Glutathione S-transferase omega-1
 
-```{r glut-scan,warning=FALSE, echo=FALSE,fig.retina=4,fig.asp=0.7,out.width="100%", cache=TRUE}
+```{r glut-scan,warning=FALSE, echo=FALSE,fig.retina=4,fig.asp=0.7,out.width="100%", cache=FALSE}
 glut_sub %>% ggplot(aes(x = mz,y = intensity)) + 
   geom_bar(stat="identity", width = 0.001) +
   xlim(c(483.5,485)) +
@@ -435,7 +435,7 @@ class: split-three
 
 HLA-B\*40:01 9-mer, AETEC(+DNP)RYAL <br> .small[Keratin, type I cytoskeletal 13]
 
-```{r keratin-mhc, echo=FALSE,cache=TRUE}
+```{r keratin-mhc, echo=FALSE,cache=FALSE}
 knitr::include_graphics("img/b40_keratin_dnp_top_2.png")
 ```
 
@@ -445,7 +445,7 @@ knitr::include_graphics("img/b40_keratin_dnp_top_2.png")
 
 HLA-A\*31:01, 10-mer RFC(+DNP)PFAERTR <br> .small[Glutathione S-transferase omega-1] 
 
-```{r gst-mhc,echo=FALSE, cache=TRUE}
+```{r gst-mhc,echo=FALSE, cache=FALSE}
 knitr::include_graphics("img/a31_glut_dnp_top.png")
 ```
 
@@ -455,7 +455,7 @@ knitr::include_graphics("img/a31_glut_dnp_top.png")
 
 .small[Glutathione S-transferase omega-1]
 
-```{r gst, echo=FALSE, cache=TRUE}
+```{r gst, echo=FALSE, cache=FALSE}
 knitr::include_graphics("img/glut_transferase.png")
 ```
 
@@ -477,7 +477,7 @@ class: split-two
 
 Number of peptide N-mers, n = 3
 
-```{r, fig.retina=4,echo=FALSE, cache=TRUE}
+```{r, fig.retina=4,echo=FALSE, cache=FALSE}
 a2_dat %>% 
   select(length, exp_type, exp_name) %>% 
   group_by(length, exp_name) %>% 
@@ -506,7 +506,7 @@ a2_dat %>%
 
 Percentage of peptide N-mers, n = 3
 
-```{r, fig.retina=4,echo=FALSE, cache=TRUE}
+```{r, fig.retina=4,echo=FALSE, cache=FALSE}
 a2_dat %>% 
   select(length, exp_type, exp_name) %>% 
   group_by(exp_name, length) %>% 
@@ -542,7 +542,7 @@ class: split-two
 
 Intersection between all peptides
 
-```{r, upset-a2,fig.retina=4, fig.asp=0.8,out.width="100%", echo=FALSE, cache=TRUE}
+```{r, upset-a2,fig.retina=4, fig.asp=0.8,out.width="100%", echo=FALSE, cache=FALSE}
 
 du_a2 <- a2_dat %>% 
   select(peptide, exp_type) %>% 
@@ -570,7 +570,7 @@ upset(as.data.frame(du_a2), nsets = 2,
 
 Intersection of 9-mers
 
-```{r, upset-2-a2,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=TRUE}
+```{r, upset-2-a2,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=FALSE}
 du2_a2 <- a2_dat %>% 
   filter(length == 9) %>% 
   select(peptide, exp_type) %>% 
@@ -602,7 +602,7 @@ class: split-two
 
 Immune epitope database peptides
 
-```{r, iedb-a2-logos, fig.retina=4, echo=FALSE,fig.asp=0.8,out.width="100%",message=F, cache=TRUE}
+```{r, iedb-a2-logos, fig.retina=4, echo=FALSE,fig.asp=0.8,out.width="100%",message=F, cache=FALSE}
 # IEDB logos
 ggseqlogo(ideb_a2_logos)
 ```
@@ -613,7 +613,7 @@ ggseqlogo(ideb_a2_logos)
 
 Peptide classification model
 
-```{r, a2_logos,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=TRUE}
+```{r, a2_logos,fig.retina=4,fig.asp=0.8,out.width="100%", echo=FALSE, cache=FALSE}
 ggseqlogo(a2_logos)
 ```
 
@@ -626,7 +626,7 @@ There were 1000 9-mer peptides for each allotype for the IEDB peptides
 ---
 class: inverse
 
-```{r, a2_preds,fig.retina=6,echo=FALSE,fig.asp=0.6,out.width="100%", cache=TRUE}
+```{r, a2_preds,fig.retina=6,echo=FALSE,fig.asp=0.6,out.width="100%", cache=FALSE}
 a2_bind_plot + scale_fill_gradient(low = my_cols[5], high = my_cols[1]) +
   labs(title = "Identified NetMHC binding predicted 9-mer peptides ",
       subtitle = "Predicted binders in blue") 
@@ -648,7 +648,7 @@ HLA-A\*02:01 10-mer, .horizon-1.bold[KLLEGEEC(+DNP)RL] <br> Keratin, type II cyt
 
 .column.horizon-1-slide[.content.center.vmiddle[
 
-```{r a2-dncb-mods-table, out.width="100%",echo=FALSE, cache=TRUE}
+```{r a2-dncb-mods-table, out.width="100%",echo=FALSE, cache=FALSE}
 # Find DNCB modifications
 DT::datatable(a2_dncb_mods %>% 
   select("Peptide" = peptide, 
@@ -666,7 +666,7 @@ class: split-two
 
 HLA-A*02:01, 9-mer, .bold.horizon-1[GLLDPQC(+DNP)RL] <br> Ribonuclease inhibitor
 
-```{r a2-rini-scan, warning=FALSE, echo=FALSE,fig.retina=4,fig.asp=0.7,out.width="100%", cache=TRUE}
+```{r a2-rini-scan, warning=FALSE, echo=FALSE,fig.retina=4,fig.asp=0.7,out.width="100%", cache=FALSE}
 rini_df %>% ggplot(aes(x = mz,y = intensity)) + 
   geom_bar(stat="identity", width = 0.001) +
   xlim(590,593) +
@@ -690,7 +690,7 @@ rini_df %>% ggplot(aes(x = mz,y = intensity)) +
 
 HLA-A*02:01, 10-mer, .bold.white[KLLEGEEC(+DNP)RL] <br> Keratin type II cytoskeletal 5
 
-```{r a2-ker-scan, warning=FALSE, echo=FALSE,fig.retina=4,fig.asp=0.7,out.width="100%", cache=TRUE}
+```{r a2-ker-scan, warning=FALSE, echo=FALSE,fig.retina=4,fig.asp=0.7,out.width="100%", cache=FALSE}
 # Labels 
 dat_text <- data.frame(
   label = c("454.05, DNCB-D3","453.55, DNCB-D3"),
@@ -726,7 +726,7 @@ class: split-two
 
 HLA-A\*02:01, 9-mer, GLLDPQC(+DNP)RL <br> .small[Ribonuclease inhibitor]
 
-```{r rini, echo=FALSE,cache=TRUE}
+```{r rini, echo=FALSE,cache=FALSE}
 knitr::include_graphics("img/rini_dnp_modified_peptide.png")
 ```
 
@@ -737,7 +737,7 @@ knitr::include_graphics("img/rini_dnp_modified_peptide.png")
 
 HLA-A\*02:01, 10-mer, KLLEGEEC(+DNP)RL <br> .small[Keratin, type II cytoskeletal 5] 
 
-```{r kerr-II-mhc, echo=FALSE,cache=TRUE}
+```{r kerr-II-mhc, echo=FALSE,cache=FALSE}
 knitr::include_graphics("img/keratin_dnp_modified_peptide.png")
 ```
 
@@ -753,7 +753,7 @@ class: inverse, middle, center
 
 class: inverse
 
-```{r example-turnover,fig.retina=4,fig.asp=0.6,out.width="100%", echo=FALSE, cache=TRUE}
+```{r example-turnover,fig.retina=4,fig.asp=0.6,out.width="100%", echo=FALSE, cache=FALSE}
 proto_example %>% 
   ggplot(aes(time,ratio, colour = condition)) + 
   geom_line(aes(group = condition)) +
